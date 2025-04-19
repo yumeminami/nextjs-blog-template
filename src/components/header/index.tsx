@@ -16,6 +16,13 @@ export function Header() {
   const pathname = usePathname();
   const isBlogPage = pathname.includes("/blog/");
 
+  // Create social links array and filter out undefined links
+  const socialLinks = [
+    { title: "Github", href: config.social?.github, icon: <GithubIcon /> },
+    { title: "X", href: config.social?.x, icon: <XIcon /> },
+    { title: "Xiaohongshu", href: config.social?.xiaohongshu, icon: <XiaohongshuIcon /> },
+  ].filter(link => !!link.href);
+
   return (
     <header className="pt-4">
       <motion.div
@@ -39,15 +46,11 @@ export function Header() {
 
         {/* Right side buttons */}
         <div className="flex items-center space-x-2 md:space-x-8 mr-4">
-          <Link href={config.social.github} title="Github">
-            <GithubIcon />
-          </Link>
-          <Link href={config.social.x} title="X">
-            <XIcon />
-          </Link>
-          <Link href={config.social.xiaohongshu} title="Xiaohongshu">
-            <XiaohongshuIcon />
-          </Link>
+          {socialLinks.map((link) => (
+            <Link key={link.title} href={link.href} title={link.title}>
+              {link.icon}
+            </Link>
+          ))}
         </div>
       </motion.div>
     </header >
