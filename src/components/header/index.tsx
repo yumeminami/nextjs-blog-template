@@ -16,12 +16,17 @@ export function Header() {
   const pathname = usePathname();
   const isBlogPage = pathname.includes("/blog/");
 
-  // Create social links array and filter out undefined links
   const socialLinks = [
-    { title: "Github", href: config.social?.github, icon: <GithubIcon /> },
-    { title: "X", href: config.social?.x, icon: <XIcon /> },
-    { title: "Xiaohongshu", href: config.social?.xiaohongshu, icon: <XiaohongshuIcon /> },
-  ].filter(link => !!link.href);
+    { title: "Github", key: "github", icon: <GithubIcon /> },
+    { title: "X", key: "x", icon: <XIcon /> },
+    { title: "Xiaohongshu", key: "xiaohongshu", icon: <XiaohongshuIcon /> },
+  ]
+    .map(item => ({
+      title: item.title,
+      href: config.social && config.social[item.key as keyof typeof config.social],
+      icon: item.icon
+    }))
+    .filter(link => !!link.href);
 
   return (
     <header className="pt-4">
