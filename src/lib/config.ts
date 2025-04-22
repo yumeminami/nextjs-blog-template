@@ -4,8 +4,8 @@ export const config = {
     name: "Feng rongman",
     description: "Feng rongman's tech blog",
     keywords: ["AI", "Robotics", "Full Stack Developer"],
-    url: "https://nextjs-blog-template-kappa.vercel.app/",
-    baseUrl: "https://nextjs-blog-template-kappa.vercel.app/",
+    url: "https://fengrongman-blog.vercel.app/",
+    baseUrl: "https://fengrongman-blog.vercel.app/",
     image: "https://xxx.com/og-image.png",
     favicon: {
       ico: "/favicon.ico",
