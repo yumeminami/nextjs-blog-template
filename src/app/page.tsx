@@ -10,10 +10,11 @@ export default function Home() {
     .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   const socialLinks = [
-    { name: "赞赏", key: "buyMeACoffee" },
-    { name: "X", key: "x" },
+    // { name: "赞赏", key: "buyMeACoffee" },
+    // { name: "X", key: "x" },
+    { name: "Github", key: "github" },
     { name: "小红书", key: "xiaohongshu" },
-    { name: "微信公众号", key: "wechat" },
+    // { name: "微信公众号", key: "wechat" },
   ]
     .map(item => ({
       name: item.name,

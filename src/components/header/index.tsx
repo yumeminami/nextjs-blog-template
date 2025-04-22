@@ -5,7 +5,6 @@ import { NavDesktopMenu } from "./nav-desktop-menu";
 import { NavMobileMenu } from "./nav-mobile-menu";
 import GithubIcon from "@/components/icons/github";
 import XiaohongshuIcon from "@/components/icons/xiaohongshu";
-import XIcon from "@/components/icons/x";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
@@ -18,7 +17,6 @@ export function Header() {
 
   const socialLinks = [
     { title: "Github", key: "github", icon: <GithubIcon /> },
-    { title: "X", key: "x", icon: <XIcon /> },
     { title: "Xiaohongshu", key: "xiaohongshu", icon: <XiaohongshuIcon /> },
   ]
     .map(item => ({

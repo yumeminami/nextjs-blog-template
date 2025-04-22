@@ -1,11 +1,11 @@
 export const config = {
   site: {
-    title: "Nextjs Blog Template",
-    name: "Nextjs Blog Template",
-    description: "Nextjs Blog Template",
-    keywords: ["Nextjs Blog Template", "AI", "Full Stack Developer"],
-    url: "https://xxx.com",
-    baseUrl: "https://xxx.com",
+    title: "",
+    name: "Feng rongman",
+    description: "Feng rongman's tech blog",
+    keywords: ["AI", "Robotics", "Full Stack Developer"],
+    url: "https://nextjs-blog-template-kappa.vercel.app/",
+    baseUrl: "https://nextjs-blog-template-kappa.vercel.app/",
     image: "https://xxx.com/og-image.png",
     favicon: {
       ico: "/favicon.ico",
@@ -25,14 +25,14 @@ export const config = {
     },
   },
   author: {
-    name: "Your Name",
-    email: "your.email@example.com",
-    bio: "这是一个 Nextjs 博客模板",
+    name: "Feng rongman",
+    email: "fengrongman@gmail.com",
+    bio: "My tech blog, about AI, Robotics, and some interesting things",
   },
   social: {
-    github: "https://github.com/xxx",
+    github: "https://github.com/yumeminami",
     x: "https://x.com/xxx",
-    xiaohongshu: "https://www.xiaohongshu.com/user/profile/xxx",
+    xiaohongshu: "https://www.xiaohongshu.com/user/profile/60de0a430000000001000a6b",
     wechat: "https://storage.xxx.com/images/wechat-official-account.png",
     buyMeACoffee: "https://www.buymeacoffee.com/xxx",
   },
@@ -44,7 +44,7 @@ export const config = {
   navigation: {
     main: [
       { 
-        title: "文章", 
+        title: "杂文", 
         href: "/blog",
       },
     ],
