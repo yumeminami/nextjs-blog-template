@@ -1,3 +1,10 @@
+---
+title: "Loco Mujoco Retarget Your Robot"
+date: "2025-04-23"
+tags: ["robotics", "motion capture", "AI"]
+draft: false
+---
+
 # Loco Mujoco Retarget Your Robot
 
 ## 项目介绍
