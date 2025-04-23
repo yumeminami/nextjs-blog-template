@@ -1,11 +1,10 @@
 ---
 title: "Loco Mujoco Retarget Your Robot"
 date: "2025-04-23"
-tags: ["robotics", "motion capture", "AI"]
 draft: false
+keywords: ["robotics", "motion capture", "AI"]
+summary: "介绍如何使用 Loco Mujoco 将动捕数据转换为机器人动作"
 ---
-
-# Loco Mujoco Retarget Your Robot
 
 ## 项目介绍
 
