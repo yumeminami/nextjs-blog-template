@@ -97,3 +97,84 @@ LocoMuJoCo 还支持机器人之间的动作转换，通过 `motion_transfer_rob
 1. 源机器人运动转换为SMPL动作
 2. 使用优化算法拟合SMPL关节角度和位置
 3. 将拟合后的SMPL动作应用到目标机器人
+
+## retargeting your own robot
+
+### ⚠️ 注意事项
+
+   1. 请确保您的 amass dataset 已经下载完毕，并且按照 repo README 配置(https://github.com/robfiras/loco-mujoco/blob/master/loco_mujoco/smpl)
+   2. 请确保您的 `python` 依赖已经按照 repo README 所需要安装完毕
+
+
+### 准备您的机器人的 `Mujoco` 模型文件
+
+   1. 将您的模型文件目录放置 `loco-mujoco/loco_mujoco/models` 目录下
+   2. 修改您的 `mujoco` 的 `xml` 文件, 添加 `mimic_site` 标记点放在对应的 `<body>` 下
+
+      ```xml
+         <site name="pelvis_mimic" class="mimic" />
+         <site name="upper_body_mimic" class="mimic" />
+         <site name="left_hip_mimic" class="mimic"  />
+         <site name="left_knee_mimic" class="mimic"  />
+         <site name="left_foot_mimic" class="mimic"  />
+         <site name="right_hip_mimic" class="mimic"  />
+         <site name="right_knee_mimic" class="mimic"  />
+         <site name="right_foot_mimic" class="mimic"  />
+         <site name="left_shoulder_mimic" class="mimic"  />
+         <site name="left_elbow_mimic" class="mimic"  />
+         <site name="left_hand_mimic" class="mimic"  />
+         <site name="right_shoulder_mimic" class="mimic"  />
+         <site name="right_elbow_mimic" class="mimic"  />
+         <site name="right_hand_mimic" class="mimic"  />
+         <site name="head_mimic" class="mimic" />
+      ```
+
+   3. 您可以参考 `loco-mujoco/loco_mujoco/models/unitree_g1/g1_23dof.xml` 的写法, 添加您的机器人关节的 `mimic_site` 标记点
+
+### **注册您的机器人** Mujoco Environment
+
+   1. 在 `loco-mujoco/loco_mujoco/environments/humanoids` 文件中注册您的机器人 Mujoco Environment, 可以参考 `unitreeG1.py` 的写法
+
+   2. 自定义禁用参数，在您的机器人 Environment 中的构造函数中添加参数，例如：
+
+      ```python
+      def __init__(self, disable_arms: bool = False, # custom disable arms
+                  disable_back_joint: bool = False, # custom disable back joint
+                  spec: Union[str, MjSpec] = None,
+                  observation_spec: List[Observation] = None,
+                  actuation_spec: List[str] = None,
+                  **kwargs) -> None:
+      ```
+
+      其中 `disable_*` 参数用于是否禁用自定义的关节，在 `_get_spec_modifications` 函数中，remove 掉对应的 `joint` 以及 `actuator`。最后需要给对应的 `link` 添加一个固定的 `quat`。
+
+      实现可以参考 `unitreeG1.py` 中的 `_get_spec_modifications` 函数以及 `_reorient_arms` 函数
+
+   3. 在 `loco-mujoco/loco_mujoco/environments/humanoids/__init__.py` 文件中注册您的机器人 Environment
+
+### 定义您的机器人 smpl robot conf
+
+   1. 在 `loco-mujoco/loco_mujoco/smpl/robot_confs` 下添加一个您的机器人 Environment Class 同名的 yaml 文件, 例如 `unitreeG1.yaml`
+   2. 对其 smpl 模型的 T Pose, 例如 `unitreeG1.yaml` 中的 `robot_pose_modifier` 参数(请根据您的机器人关节的实际情况修改 `robot_pose_modifier` 参数)
+
+      ```yaml
+         robot_pose_modifier:
+         - left_shoulder_roll_joint: "np.pi/2"
+         - left_elbow_joint: "np.pi/2"
+         - right_shoulder_roll_joint: "-np.pi/2"
+         - right_elbow_joint: "np.pi/2"
+      ```
+
+   3. 添加 env_params(请根据您的机器人关节的实际情况修改 `env_params` 参数)
+
+      ```yaml
+         env_params:
+         disable_arms: False
+         disable_back_joint: True
+      ```
+
+### 尝试 retargeting motion to your robot
+
+   1. 修改 `loco-mujoco/examples/replay_datasets/smpl_example.py` 中 `ImitationFactory.make` 函数中的 `env_name` 参数为您的机器人 Environment Class 名称
+
+   2. python `smpl_example.py` 运行
