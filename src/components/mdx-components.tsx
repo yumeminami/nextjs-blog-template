@@ -158,7 +158,7 @@ const components = {
     <code
       className={cn(
         "w-max-2xl rounded-[0.6rem] bg-[#ededeb] px-[0.3rem] py-[0.2rem]",
-        "font-mono text-[1.0rem] font-normal text-[#ed4759]",
+        "font-['Operator_Mono'] text-[1.0rem] font-normal text-[#ed4759]",
         className
       )}
       {...props}
