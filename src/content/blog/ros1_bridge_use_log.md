@@ -609,8 +609,8 @@ NOTE:
 关键问题：
 
 ```cpp
-auto @(field["ros1"]["name"])1_it = req1.@(field["ros1"]["name"]).begin();
-auto @(field["ros2"]["name"])2_it = req2.@(field["ros2"]["name"]).begin();
+auto & @(field["ros1"]["name"])1 = req1.@(field["ros1"]["name"]);
+auto & @(field["ros2"]["name"])2 = req2.@(field["ros2"]["name"]);
 @[        if field["basic"]]@
   @(field["ros2"]["name"])@(to) = @(field["ros1"]["name"])@(frm);
 @[        else]@
