@@ -646,7 +646,7 @@ void ServiceFactory<
   const my_msgs::MySrv::Request& req1,
   my_msgs::srv::MySrv::Request& req2
 ) {
-  auto & Req1 = req1.req;
+  auto & Req1 = req1.Req;
   auto & req2 = req2.req;
   Factory<my_msgs::MyMsg,my_msgs::msg::MyMsg>::convert_1_to_2(
     req1, Req2
