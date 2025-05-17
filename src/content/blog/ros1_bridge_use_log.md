@@ -4,7 +4,7 @@ date: 2025-05-17T21:10:00+08:00
 updated: 2025-05-17T21:10:00+08:00
 keywords: ["ros1", "bridge", "log"]
 featured: true
-summary: "如何使用 ros1 bridge 以及为修复了官方仓库的bug"
+summary: "如何使用 ros1 bridge 以及顺带修复了官方仓库的bug"
 ---
 
 ## 项目地址
