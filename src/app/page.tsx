@@ -14,6 +14,7 @@ export default function Home() {
     // { name: "X", key: "x" },
     { name: "Github", key: "github" },
     { name: "小红书", key: "xiaohongshu" },
+    { name: "Instagram", key: "instagram" },
     // { name: "微信公众号", key: "wechat" },
   ]
     .map(item => ({

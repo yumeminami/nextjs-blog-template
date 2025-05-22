@@ -33,6 +33,7 @@ export const config = {
     github: "https://github.com/yumeminami",
     x: "https://x.com/xxx",
     xiaohongshu: "https://www.xiaohongshu.com/user/profile/60de0a430000000001000a6b",
+    instagram: "https://www.instagram.com/fengrongman/",
     wechat: "https://storage.xxx.com/images/wechat-official-account.png",
     buyMeACoffee: "https://www.buymeacoffee.com/xxx",
   },
