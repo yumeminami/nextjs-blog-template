@@ -103,14 +103,15 @@ summary: "如何使用 CMake install export 让我们的目标可以被 find_pac
 
 5. 编译安装
 
-```bash
-cd <project>
-mkdir build && cd build
-cmake .. -DCMAKE_INSTALL_PREFIX=<install_prefix>
-sudo make -j$(nproc) install
-```
+    ```bash
+    cd <project>
+    mkdir build && cd build
+    cmake .. -DCMAKE_INSTALL_PREFIX=<install_prefix>
+    sudo make -j$(nproc) install
+    ```
 
-`<install_prefix>` 目录就是我们可以分发目标了, 使用方通过 `find_package(hardware REQUIRED)` 时，可以得到`hareware::hareware` 以及子库`hardware::lib1` 和 `hardware::lib2` 和 `hardware::lib3` 三个目标的所有信息
+- `<install_prefix>` 目录就是我们可以分发目标了
+- 使用方通过 `find_package(hardware REQUIRED)` 时，可以得到`hareware::hareware` 以及子库`hardware::lib1` 和 `hardware::lib2` 和 `hardware::lib3` 三个目标的所有信息
 
 ## 如何使用
 
@@ -131,6 +132,14 @@ export CMAKE_PREFIX_PATH=$script_dir:$CMAKE_PREFIX_PATH
 ```
 
 用户 `source` 这个脚本后就可以使用 `find_package` 找到我们分发的库了。
+
+## 总结
+
+- 需要使用 `$<BUILD_INTERFACE>` 和 `$<INSTALL_INTERFACE>` 语法来区分编译和安装时需要的路径
+- 需要使用 `install` 安装 `header file` 和 `lib` 对齐 `$<INSTALL_INTERFACE>`
+- 需要使用 `install(TARGETS ... EXPORT <export_name>)` 安装该目标并将其信息添加到 `<export_name>` 集合
+- 需要使用 `write_basic_package_version_file()` 命令来生成一个版本检查文件 ConfigVersion.cmake，用于判断库的安装版本是否与请求的版本兼容
+- 需要使用 `find_package()` 命令来在使用方项目中寻找并加载上一步生成的 myConfig.cmake、myConfigVersion.cmake 等文件，把目标“导入”到当前项目
 
 ## Reference Links
 
